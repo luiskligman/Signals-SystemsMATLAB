@@ -1,0 +1,671 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>computer_assignment6</title>
+<meta name="generator" content="MATLAB 25.1">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2025-10-29">
+<meta name="DC.source" content="computer_assignment6.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">--- PROGRAMMING ASSIGNMENT 6 LUIS KLIGMAN ---</a>
+</li>
+<li>
+<a href="#2">--- Problem Data (given in assignment) ---</a>
+</li>
+<li>
+<a href="#3">--- Part 1: lim v_i(t) ---</a>
+</li>
+<li>
+<a href="#4">--- Part 2: Determine V_i(s) with MATLAB for all i ---</a>
+</li>
+<li>
+<a href="#5">FROM LAPLACE</a>
+</li>
+<li>
+<a href="#6">NOW FIND LY(s) FROM y_i(t)</a>
+</li>
+<li>
+<a href="#7">--- PART 3: ---</a>
+</li>
+<li>
+<a href="#8">WITH WOLFRAMALPHA, CALCULATE THE INVERSE LAPLACE TRANSFORM OF V_3(s) AND PLOT V_3(t) IN MATLAB</a>
+</li>
+<li>
+<a href="#9">--- PART 4: NUMERICAL SIMULATION OF VELOCITIES AND POSITIONS ---</a>
+</li>
+</ul>
+</div>
+<h2 id="1">--- PROGRAMMING ASSIGNMENT 6 LUIS KLIGMAN ---</h2>
+<pre class="codeinput">
+<span class="comment">% Ni : set if neighbors of jet i (adjacent jets)</span>
+<span class="comment">% |Ni| : Number of those neighbors; cardinality of the set Ni</span>
+<span class="comment">% alpha : "stiffness" (penalize position error to desired spacing)</span>
+<span class="comment">% beta : "damping" (penalizes velocity disagreement with neighbors)</span>
+<span class="comment">% deltaij : desired long-term spacing yi - yj (signs are important)</span>
+
+clear <span class="string">all</span>;
+close <span class="string">all</span>;
+clc;
+
+syms <span class="string">s</span> <span class="string">t</span>
+</pre>
+<h2 id="2">--- Problem Data (given in assignment) ---</h2>
+<p>Initial positions y(0) and velocities v(0):</p>
+<pre class="codeinput">y0 = [0; 20; 40; 60; 80];  <span class="comment">% Column Vector</span>
+v0 = [500; 500; 500; 500; 500];  <span class="comment">% Column Vector; all 500 initially</span>
+
+<span class="comment">% Control gains and desired spacing:</span>
+alpha = 1;  <span class="comment">% Stiffness coefficient</span>
+beta = 2;  <span class="comment">% Damping coefficient</span>
+d = 10;  <span class="comment">% Desired neighbor spacing</span>
+
+<span class="comment">% Adjacency Matrix (A) -- "Who talks to whom"</span>
+<span class="comment">% Jet 1 --&gt; connected to Jet 2</span>
+<span class="comment">% Jet 2 --&gt; connected to Jets 1 and 3</span>
+<span class="comment">% Jet 3 --&gt; connected to Jets 2 and 4</span>
+<span class="comment">% Jet 4 --&gt; connected to jets 3 and 5</span>
+<span class="comment">% Jet 5 --&gt; connected to Jet 4</span>
+A = [ 0, 1, 0, 0, 0;
+      1, 0, 1, 0, 0;
+      0, 1, 0, 1, 0;
+      0, 0, 1, 0, 1;
+      0, 0, 0, 1, 0 ];
+<span class="comment">% Each row represents one jet</span>
+<span class="comment">% Each column shows which other jets it can sense/communicate with</span>
+<span class="comment">% A '1' in row i, column j means that jet i and jet j can communicate</span>
+<span class="comment">% A '0' means no direct communication</span>
+<span class="comment">% The matrix is symmetric since communication is bidirectional</span>
+
+<span class="comment">% y2 - y1 --&gt; d</span>
+<span class="comment">% y3 - y2 --&gt; d</span>
+<span class="comment">% y3 - y4 --&gt; d</span>
+<span class="comment">% y4 - y5 --&gt; d</span>
+<span class="comment">% That implies (by definition Deltaij = lim t-&gt;inf (yi - yj)</span>
+<span class="comment">% Delta12 means the position of jet 1 minus the position of jet 2</span>
+<span class="comment">% Delta21 means the position of jet 2 minus the position of jet 1</span>
+<span class="comment">% Edge (1,2): delta21 = d :: delta12 = -d</span>
+<span class="comment">% Edge (2,3): delta32 = d :: delta23 = -d</span>
+<span class="comment">% Edge (3,4): delta34 = d :: delta43 = -d</span>
+<span class="comment">% Edge (4,5): delta45 = d :: delta54 = -d</span>
+
+<span class="comment">% Degree Matrix (D) -- "How many neighbors each jet has"</span>
+<span class="comment">% Jet 1 --&gt; 1 neighbor</span>
+<span class="comment">% Jet 2 --&gt; 2 neighbors</span>
+<span class="comment">% Jet 3 --&gt; 2 neighbors</span>
+<span class="comment">% Jet 4 --&gt; 2 neighbors</span>
+<span class="comment">% Jet 5 --&gt; 1 neighbor</span>
+<span class="comment">% Degree matrix D (|Ni| on the diagonal): ends have 1 neighbor, middle</span>
+<span class="comment">% have 2</span>
+D = [ 1, 0, 0, 0, 0;
+      0, 2, 0, 0, 0;
+      0, 0, 2, 0, 0;
+      0, 0, 0, 2, 0;
+      0, 0, 0, 0, 1 ];
+<span class="comment">% Dii = number of neighbors (the 'degree' of node i)</span>
+<span class="comment">% Off-diagonal entries are zero since no jet's degree depends on others</span>
+<span class="comment">% Multiplying by this matrix makes it so jets that have two neighbors (like</span>
+<span class="comment">% 2, 3, 4) do not end up reacting with twice the corrective force of jets</span>
+<span class="comment">% that have only one neighbor (like 1 and 5)</span>
+
+<span class="comment">% Laplacian Matrix (L = D - A) -- "Relative difference operator"</span>
+L = D - A;
+<span class="comment">% Computing this gives:</span>
+<span class="comment">% L =</span>
+<span class="comment">%      1    -1     0     0     0</span>
+<span class="comment">%     -1     2    -1     0     0</span>
+<span class="comment">%      0    -1     2    -1     0</span>
+<span class="comment">%      0     0    -1     2    -1</span>
+<span class="comment">%      0     0     0    -1     1</span>
+<span class="comment">% The diagonal element Lii = number of neighbors (from D)</span>
+<span class="comment">% The off-diagonal element Lij = - 1 if jet i and jet j are connected</span>
+<span class="comment">% Why this matters: When you multiply L by a position vector y, this</span>
+<span class="comment">% produces the sum of all relative position errors for each jet with its</span>
+<span class="comment">% neighbors</span>
+<span class="comment">% It measures how far each jet is from being aligned with its neighbors</span>
+
+<span class="comment">% Inside the differential equation for a single jet i, it tells us:</span>
+<span class="comment">% Each jet looks at its position and velocity relative to its neighbors</span>
+<span class="comment">% Deltaij is the desired spacing between jets i and j</span>
+<span class="comment">% Alpha and Beta control how strongly the jets react to position or</span>
+<span class="comment">% velocity errors</span>
+
+<span class="comment">% Inside the sum, we have (yi - yj - deltaij)</span>
+<span class="comment">% That term measures how far jet i is from where it should be relative to</span>
+<span class="comment">% jet j</span>
+<span class="comment">% If yi - yj &gt; deltaij : jet i is too far -&gt; it slows down</span>
+<span class="comment">% If yi - yj &lt; deltaij : j i is too close -&gt; it speeds up</span>
+
+<span class="comment">% We can use this to simplify the given differential equation</span>
+<span class="comment">% Create column vectors y(t) and v(t) to collect all positions and</span>
+<span class="comment">% velocities</span>
+<span class="comment">% Using the Laplacian L = D - A matrix, it encodes all relative</span>
+<span class="comment">% differences</span>
+<span class="comment">% Then the sum of differences over all neighbors can be compactly written</span>
+<span class="comment">% as Ly and Lv</span>
+
+<span class="comment">% This condenses the differential equation into</span>
+<span class="comment">%  dvi(t)     -1</span>
+<span class="comment">%  -----  = -D  [ alpha * (Ly(t) - b) + beta*Lv(t) ]</span>
+<span class="comment">%    dtpwd</span>
+<span class="comment">% Where b is the collection of the delta terms</span>
+
+<span class="comment">% Compute bi = Sigma   Deltaij</span>
+<span class="comment">%               j element of Ni</span>
+
+<span class="comment">%    Jet    Neighbors    bi                                result</span>
+<span class="comment">%     1        {2}       delta12 = -d                        -d</span>
+<span class="comment">%     2        {1,3}     delta21 + delta23 = d - d            0</span>
+<span class="comment">%     3        {2,4}     delta32 + delta34 = d + d           2d</span>
+<span class="comment">%     4        {3,5}     delta43 + delta45 = -d + d           0</span>
+<span class="comment">%     5        {4}       delta 54 = -d                       -d</span>
+b = [-d; 0; 2*d; 0; -d];
+<span class="comment">% Therefore, b acts like a bias correction vector that tells the controller</span>
+<span class="comment">% what steady-state geometry formation shape we want</span>
+</pre>
+<h2 id="3">--- Part 1: lim v_i(t) ---</h2>
+<pre>             t -&gt; inf
+With relative-only coupling, the average velocity is invariant, and the
+damping term beta*L drives velocity difference to zero. Therefore, all
+velocities converge to the common value equal to the initial average.</pre>
+<pre class="codeinput">v_0 = 500;              <span class="comment">% Initial average velocity</span>
+v_inf = v_0*ones(5,1);
+
+disp(<span class="string">'Part 1: Steady-state velocities:'</span>);
+disp(<span class="string">'lim_{t-&gt;inf} v_i(t) = '</span>);
+disp(v_inf);  <span class="comment">% Expect all 500</span>
+
+<span class="comment">% The formation reaches the right shape (relative distance) and then moves</span>
+<span class="comment">% together with a common constant velocity c. In this case, c = 500, but c</span>
+<span class="comment">% is not arbitrary; instead, it is based on the initial given velocities</span>
+</pre>
+<pre class="codeoutput">Part 1: Steady-state velocities:
+lim_{t-&gt;inf} v_i(t) = 
+   500
+   500
+   500
+   500
+   500
+
+</pre>
+<h2 id="4">--- Part 2: Determine V_i(s) with MATLAB for all i ---</h2>
+<pre>dv_i(t)       1
+------   = - -----  SIGMA  (y_i(t) &minus; y_j(t) - Δij) + (v_i(t) - v_j(t))
+ dt          |N_i| j &isin; N_i</pre>
+<h2 id="5">FROM LAPLACE</h2>
+<p>sV(s) - v(0) = -D^-1 [(LY(S) - b/s) * LV(s)]</p>
+<h2 id="6">NOW FIND LY(s) FROM y_i(t)</h2>
+<pre>         y(0)     V(s)
+Y(s) =   ------ + ------
+          s         s</pre>
+<pre class="codeinput">
+<span class="comment">% Build the left-hand operator M(s) and right-hand RHS(s):</span>
+D_inv = inv(D);  <span class="comment">% D^{-1}</span>
+M    = s*eye(5) + D_inv*( beta*L + (alpha/s)*L );      <span class="comment">% sI + D^{-1}(βL + α/s * L)</span>
+RHS  = v0 - (alpha/s)*D_inv*( L*y0 - b );              <span class="comment">% v0 - (α/s)D^{-1}(Ly0 - b)</span>
+
+<span class="comment">% Solve symbolically for all V_i(s)</span>
+V = simplify( M \ RHS ); <span class="comment">% 5x1 symbolic vector: [V1(s); ...; V5(s)]</span>
+disp(<span class="string">'Part 2: V_i(s) for all i using MATLAB'</span>)
+V1 = simplify(V(1))
+V2 = simplify(V(2))
+V3 = simplify(V(3))
+V4 = simplify(V(4))
+V5 = simplify(V(5))
+</pre>
+<pre class="codeoutput">Part 2: V_i(s) for all i using MATLAB
+ 
+V1 =
+ 
+(10*(100*s^6 + 602*s^5 + 1308*s^4 + 1416*s^3 + 862*s^2 + 303*s + 50))/(s*(s + 1)^2*(2*s^4 + 8*s^3 + 8*s^2 + 4*s + 1))
+ 
+ 
+V2 =
+ 
+(20*(50*s^4 + 200*s^3 + 202*s^2 + 101*s + 25))/(s*(2*s^4 + 8*s^3 + 8*s^2 + 4*s + 1))
+ 
+ 
+V3 =
+ 
+(500*s^2 + 1010*s + 500)/(s*(s + 1)^2)
+ 
+ 
+V4 =
+ 
+(20*(50*s^4 + 200*s^3 + 198*s^2 + 99*s + 25))/(s*(2*s^4 + 8*s^3 + 8*s^2 + 4*s + 1))
+ 
+ 
+V5 =
+ 
+(10*(100*s^6 + 594*s^5 + 1276*s^4 + 1368*s^3 + 830*s^2 + 295*s + 50))/(s*(s + 1)^2*(2*s^4 + 8*s^3 + 8*s^2 + 4*s + 1))
+ 
+</pre>
+<h2 id="7">--- PART 3: ---</h2>
+<h2 id="8">WITH WOLFRAMALPHA, CALCULATE THE INVERSE LAPLACE TRANSFORM OF V_3(s) AND PLOT V_3(t) IN MATLAB</h2>
+<p>Taking the output function of V_3(s) from part 2: (500*s^2 + 1010*s + 500)/(s*(s + 1)^2) Giving that to WolframAlpha results in: 10te^-t + 500</p>
+<pre class="codeinput">V3_t = ilaplace(V3, s, t);  <span class="comment">% V3_t is equal to the result from WolframAlpha</span>
+
+<span class="comment">% Plot V3_ as a function of time</span>
+V3_ = 10*t*exp(-t) + 500;
+<span class="comment">% Change V3_ which has syms t, so that t becomes a time variable</span>
+V3_func = matlabFunction(V3_, <span class="string">'Vars'</span>, t);
+t_vals = linspace(0, 20, 1000);
+figure; hold <span class="string">on</span>; grid <span class="string">on</span>;
+plot(t_vals, V3_func(t_vals), <span class="string">'LineWidth'</span>, 1.5);
+xlabel(<span class="string">'t (s)'</span>); ylabel(<span class="string">'v_3(t)'</span>)
+title(<span class="string">'Part 3: Plotting V_3(t) from WolframAlpha'</span>);
+legend({<span class="string">'v_3(t)'</span>}, <span class="string">'Location'</span>,<span class="string">'best'</span>);
+</pre>
+<img vspace="5" hspace="5" src="computer_assignment6_01.png" alt=""> <h2 id="9">--- PART 4: NUMERICAL SIMULATION OF VELOCITIES AND POSITIONS ---</h2>
+<pre class="codeinput">dt = 1e-3;  <span class="comment">% Time step</span>
+Sec = 20;  <span class="comment">% End time (seconds)</span>
+Nsteps = round(Sec/dt);  <span class="comment">% Number of steps</span>
+
+<span class="comment">% Pre-allocate arrays for speed efficiency</span>
+t_vals = (0:Nsteps)*dt;  <span class="comment">% Time vector (length Nsteps+1)</span>
+v = zeros(5, Nsteps+1);  <span class="comment">% Initializes a 5&times;(Nsteps+1) matrix of zeros to store velocity values.</span>
+y = zeros(5, Nsteps+1);  <span class="comment">% Initializes a 5&times;(Nsteps+1) matrix of zeros to store position values.</span>
+
+<span class="comment">% Set initial conditions at index 1 (time t=0)</span>
+v(:,1) = v0;
+y(:,1) = y0;
+
+<span class="comment">% Time stepping:</span>
+<span class="keyword">for</span> k = 1:Nsteps
+    <span class="comment">% Current values</span>
+    vk = v(:,k);  <span class="comment">% vk is the vector of all five jets' velocities at the current time step t_k</span>
+    yk = y(:,k);  <span class="comment">% yk is the vector of all five jets' positions at the current time step t_k</span>
+
+    <span class="comment">% Compute derivatives using the ODE</span>
+    <span class="comment">% dv/dt = -D^-1 * [ alpha*(L*yk - b) + beta*(L*vk) ]</span>
+    <span class="comment">% dv is the vector of computed derivatives from the equation</span>
+    dv = -D_inv * ( alpha*(L*yk - b) + beta*(L*vk) );
+
+    <span class="comment">% Forward Euler</span>
+    v(:,k+1) = vk + dt*dv;  <span class="comment">% update velocity first</span>
+    y(:,k+1) = yk + dt*v(:,k+1);  <span class="comment">% then integrate position with new v</span>
+<span class="keyword">end</span>
+
+<span class="comment">% Plots for velocities</span>
+<span class="comment">% Each row of v(i,:) stores the velocity history of jet i across all time</span>
+<span class="comment">% steps.</span>
+figure; hold <span class="string">on</span>;
+plot(t_vals, v(1,:), <span class="string">'LineWidth'</span>, 1.2);  <span class="comment">% Jet 1</span>
+plot(t_vals, v(2,:), <span class="string">'LineWidth'</span>, 1.2);  <span class="comment">% Jet 2</span>
+plot(t_vals, v(3,:), <span class="string">'LineWidth'</span>, 1.8);  <span class="comment">% Jet 3   highlight v3</span>
+plot(t_vals, v(4,:), <span class="string">'LineWidth'</span>, 1.2);  <span class="comment">% Jet 4</span>
+plot(t_vals, v(5,:), <span class="string">'LineWidth'</span>, 1.2);  <span class="comment">% Jet 5</span>
+grid <span class="string">on</span>;
+xlabel(<span class="string">'t (s)'</span>);
+ylabel(<span class="string">'v_i(t)'</span>);
+title(<span class="string">'Part 4: Velocities of All Jets Over Time'</span>);
+legend({<span class="string">'v_1'</span>, <span class="string">'v_2'</span>, <span class="string">'v_3'</span>, <span class="string">'v_4'</span>, <span class="string">'v_5'</span>}, <span class="string">'Location'</span>, <span class="string">'best'</span>);
+
+<span class="comment">% Plot the four required position differences (neighbor spacings)</span>
+<span class="comment">% These represent the distances between adjacent jets over time</span>
+<span class="comment">% Each curve shows how fast the jets reach the desired steady-state spacing</span>
+<span class="comment">% d = 10</span>
+
+<span class="comment">% Compute position differences at every time step</span>
+y21 = y(2,:) - y(1,:);  <span class="comment">% Spacing between Jet 2 and Jet 1</span>
+y32 = y(3,:) - y(2,:);  <span class="comment">% Spacing between Jet 3 and Jet 2</span>
+y34 = y(3,:) - y(4,:);  <span class="comment">% Spacing between Jet 3 and Jet 4</span>
+y45 = y(4,:) - y(5,:);  <span class="comment">% Spacing between Jet 4 and Jet 5</span>
+
+figure;
+hold <span class="string">on</span>;
+<span class="comment">% Plot each spacing vs time</span>
+plot(t_vals, y21, <span class="string">'LineWidth'</span>, 1.6);
+plot(t_vals, y32, <span class="string">'LineWidth'</span>, 1.6);
+plot(t_vals, y34, <span class="string">'LineWidth'</span>, 1.6);
+plot(t_vals, y45, <span class="string">'LineWidth'</span>, 1.6);
+yline(d, <span class="string">'k--'</span>, <span class="string">'LineWidth'</span>, 1.2);  <span class="comment">% Reference Line for the desired spacing to converge to</span>
+grid <span class="string">on</span>;
+xlabel(<span class="string">'t (s)'</span>);
+ylabel(<span class="string">'y-differences (m)'</span>);
+title(<span class="string">'Part 4: Position Differences of Jets Over Time'</span>);
+legend({<span class="string">'y_2 - y_1'</span>,<span class="string">'y_3 - y_2'</span>,<span class="string">'y_3 - y_4'</span>,<span class="string">'y_4 - y_5'</span>}, <span class="string">'Location'</span>, <span class="string">'best'</span>);
+</pre>
+<img vspace="5" hspace="5" src="computer_assignment6_02.png" alt=""> <img vspace="5" hspace="5" src="computer_assignment6_03.png" alt=""> <p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2025a</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% REPLACE_WITH_DASH_DASH- PROGRAMMING ASSIGNMENT 6  LUIS KLIGMAN REPLACE_WITH_DASH_DASH-
+
+% Ni : set if neighbors of jet i (adjacent jets)
+% |Ni| : Number of those neighbors; cardinality of the set Ni
+% alpha : "stiffness" (penalize position error to desired spacing)
+% beta : "damping" (penalizes velocity disagreement with neighbors)
+% deltaij : desired long-term spacing yi - yj (signs are important)
+
+clear all;
+close all;
+clc;
+
+syms s t
+
+%% REPLACE_WITH_DASH_DASH- Problem Data (given in assignment) REPLACE_WITH_DASH_DASH-
+% Initial positions y(0) and velocities v(0):
+y0 = [0; 20; 40; 60; 80];  % Column Vector
+v0 = [500; 500; 500; 500; 500];  % Column Vector; all 500 initially
+
+% Control gains and desired spacing:
+alpha = 1;  % Stiffness coefficient
+beta = 2;  % Damping coefficient
+d = 10;  % Desired neighbor spacing
+
+% Adjacency Matrix (A) REPLACE_WITH_DASH_DASH "Who talks to whom"
+% Jet 1 REPLACE_WITH_DASH_DASH> connected to Jet 2
+% Jet 2 REPLACE_WITH_DASH_DASH> connected to Jets 1 and 3
+% Jet 3 REPLACE_WITH_DASH_DASH> connected to Jets 2 and 4
+% Jet 4 REPLACE_WITH_DASH_DASH> connected to jets 3 and 5
+% Jet 5 REPLACE_WITH_DASH_DASH> connected to Jet 4
+A = [ 0, 1, 0, 0, 0;
+      1, 0, 1, 0, 0;
+      0, 1, 0, 1, 0;
+      0, 0, 1, 0, 1;
+      0, 0, 0, 1, 0 ];
+% Each row represents one jet
+% Each column shows which other jets it can sense/communicate with
+% A '1' in row i, column j means that jet i and jet j can communicate
+% A '0' means no direct communication
+% The matrix is symmetric since communication is bidirectional
+
+% y2 - y1 REPLACE_WITH_DASH_DASH> d
+% y3 - y2 REPLACE_WITH_DASH_DASH> d
+% y3 - y4 REPLACE_WITH_DASH_DASH> d
+% y4 - y5 REPLACE_WITH_DASH_DASH> d
+% That implies (by definition Deltaij = lim t->inf (yi - yj)
+% Delta12 means the position of jet 1 minus the position of jet 2
+% Delta21 means the position of jet 2 minus the position of jet 1
+% Edge (1,2): delta21 = d :: delta12 = -d
+% Edge (2,3): delta32 = d :: delta23 = -d
+% Edge (3,4): delta34 = d :: delta43 = -d
+% Edge (4,5): delta45 = d :: delta54 = -d
+
+% Degree Matrix (D) REPLACE_WITH_DASH_DASH "How many neighbors each jet has"
+% Jet 1 REPLACE_WITH_DASH_DASH> 1 neighbor
+% Jet 2 REPLACE_WITH_DASH_DASH> 2 neighbors
+% Jet 3 REPLACE_WITH_DASH_DASH> 2 neighbors
+% Jet 4 REPLACE_WITH_DASH_DASH> 2 neighbors
+% Jet 5 REPLACE_WITH_DASH_DASH> 1 neighbor
+% Degree matrix D (|Ni| on the diagonal): ends have 1 neighbor, middle
+% have 2
+D = [ 1, 0, 0, 0, 0;
+      0, 2, 0, 0, 0;
+      0, 0, 2, 0, 0;
+      0, 0, 0, 2, 0;
+      0, 0, 0, 0, 1 ];
+% Dii = number of neighbors (the 'degree' of node i)
+% Off-diagonal entries are zero since no jet's degree depends on others
+% Multiplying by this matrix makes it so jets that have two neighbors (like
+% 2, 3, 4) do not end up reacting with twice the corrective force of jets
+% that have only one neighbor (like 1 and 5)
+
+% Laplacian Matrix (L = D - A) REPLACE_WITH_DASH_DASH "Relative difference operator"
+L = D - A;
+% Computing this gives:
+% L =
+%      1    -1     0     0     0
+%     -1     2    -1     0     0
+%      0    -1     2    -1     0
+%      0     0    -1     2    -1
+%      0     0     0    -1     1
+% The diagonal element Lii = number of neighbors (from D)
+% The off-diagonal element Lij = - 1 if jet i and jet j are connected
+% Why this matters: When you multiply L by a position vector y, this
+% produces the sum of all relative position errors for each jet with its
+% neighbors
+% It measures how far each jet is from being aligned with its neighbors
+
+% Inside the differential equation for a single jet i, it tells us:
+% Each jet looks at its position and velocity relative to its neighbors
+% Deltaij is the desired spacing between jets i and j
+% Alpha and Beta control how strongly the jets react to position or
+% velocity errors
+
+% Inside the sum, we have (yi - yj - deltaij)
+% That term measures how far jet i is from where it should be relative to
+% jet j
+% If yi - yj > deltaij : jet i is too far -> it slows down
+% If yi - yj < deltaij : j i is too close -> it speeds up
+
+% We can use this to simplify the given differential equation
+% Create column vectors y(t) and v(t) to collect all positions and
+% velocities
+% Using the Laplacian L = D - A matrix, it encodes all relative
+% differences
+% Then the sum of differences over all neighbors can be compactly written
+% as Ly and Lv
+
+% This condenses the differential equation into
+%  dvi(t)     -1
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-  = -D  [ alpha * (Ly(t) - b) + beta*Lv(t) ]
+%    dtpwd
+% Where b is the collection of the delta terms
+
+% Compute bi = Sigma   Deltaij
+%               j element of Ni
+
+%    Jet    Neighbors    bi                                result
+%     1        {2}       delta12 = -d                        -d
+%     2        {1,3}     delta21 + delta23 = d - d            0
+%     3        {2,4}     delta32 + delta34 = d + d           2d
+%     4        {3,5}     delta43 + delta45 = -d + d           0
+%     5        {4}       delta 54 = -d                       -d
+b = [-d; 0; 2*d; 0; -d];
+% Therefore, b acts like a bias correction vector that tells the controller
+% what steady-state geometry formation shape we want
+
+%% REPLACE_WITH_DASH_DASH- Part 1:    lim   v_i(t)    REPLACE_WITH_DASH_DASH-
+%               t -> inf
+% With relative-only coupling, the average velocity is invariant, and the
+% damping term beta*L drives velocity difference to zero. Therefore, all
+% velocities converge to the common value equal to the initial average.
+v_0 = 500;              % Initial average velocity
+v_inf = v_0*ones(5,1);  
+
+disp('Part 1: Steady-state velocities:');
+disp('lim_{t->inf} v_i(t) = ');
+disp(v_inf);  % Expect all 500
+
+% The formation reaches the right shape (relative distance) and then moves
+% together with a common constant velocity c. In this case, c = 500, but c
+% is not arbitrary; instead, it is based on the initial given velocities
+
+
+%% REPLACE_WITH_DASH_DASH- Part 2: Determine V_i(s) with MATLAB for all i REPLACE_WITH_DASH_DASH-
+%  dv_i(t)       1
+%  REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH   = - REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-  SIGMA  (y_i(t) − y_j(t) - Δij) + (v_i(t) - v_j(t)) 
+%   dt          |N_i| j ∈ N_i
+%% FROM LAPLACE
+%
+% sV(s) - v(0) = -D^-1 [(LY(S) - b/s) * LV(s)]
+%
+%% NOW FIND LY(s) FROM y_i(t)
+%           y(0)     V(s)
+% Y(s) =   REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH + REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+%            s         s
+
+% Build the left-hand operator M(s) and right-hand RHS(s):
+D_inv = inv(D);  % D^{-1}
+M    = s*eye(5) + D_inv*( beta*L + (alpha/s)*L );      % sI + D^{-1}(βL + α/s * L)
+RHS  = v0 - (alpha/s)*D_inv*( L*y0 - b );              % v0 - (α/s)D^{-1}(Ly0 - b)
+
+% Solve symbolically for all V_i(s)
+V = simplify( M \ RHS ); % 5x1 symbolic vector: [V1(s); ...; V5(s)]
+disp('Part 2: V_i(s) for all i using MATLAB')
+V1 = simplify(V(1))
+V2 = simplify(V(2))
+V3 = simplify(V(3))
+V4 = simplify(V(4))
+V5 = simplify(V(5))
+
+%% REPLACE_WITH_DASH_DASH- PART 3: REPLACE_WITH_DASH_DASH-
+%% WITH WOLFRAMALPHA, CALCULATE THE INVERSE LAPLACE TRANSFORM OF V_3(s) AND PLOT V_3(t) IN MATLAB
+% Taking the output function of V_3(s) from part 2: (500*s^2 + 1010*s + 500)/(s*(s + 1)^2)
+% Giving that to WolframAlpha results in: 10te^-t + 500
+V3_t = ilaplace(V3, s, t);  % V3_t is equal to the result from WolframAlpha
+
+% Plot V3_ as a function of time
+V3_ = 10*t*exp(-t) + 500;
+% Change V3_ which has syms t, so that t becomes a time variable
+V3_func = matlabFunction(V3_, 'Vars', t);
+t_vals = linspace(0, 20, 1000);
+figure; hold on; grid on;
+plot(t_vals, V3_func(t_vals), 'LineWidth', 1.5);
+xlabel('t (s)'); ylabel('v_3(t)')
+title('Part 3: Plotting V_3(t) from WolframAlpha');
+legend({'v_3(t)'}, 'Location','best');
+
+
+%% REPLACE_WITH_DASH_DASH- PART 4: NUMERICAL SIMULATION OF VELOCITIES AND POSITIONS REPLACE_WITH_DASH_DASH-
+ 
+dt = 1e-3;  % Time step
+Sec = 20;  % End time (seconds)
+Nsteps = round(Sec/dt);  % Number of steps
+ 
+% Pre-allocate arrays for speed efficiency
+t_vals = (0:Nsteps)*dt;  % Time vector (length Nsteps+1)
+v = zeros(5, Nsteps+1);  % Initializes a 5×(Nsteps+1) matrix of zeros to store velocity values.
+y = zeros(5, Nsteps+1);  % Initializes a 5×(Nsteps+1) matrix of zeros to store position values.
+
+% Set initial conditions at index 1 (time t=0)
+v(:,1) = v0;
+y(:,1) = y0;
+ 
+% Time stepping:
+for k = 1:Nsteps
+    % Current values
+    vk = v(:,k);  % vk is the vector of all five jets' velocities at the current time step t_k
+    yk = y(:,k);  % yk is the vector of all five jets' positions at the current time step t_k
+
+    % Compute derivatives using the ODE
+    % dv/dt = -D^-1 * [ alpha*(L*yk - b) + beta*(L*vk) ]
+    % dv is the vector of computed derivatives from the equation
+    dv = -D_inv * ( alpha*(L*yk - b) + beta*(L*vk) );
+
+    % Forward Euler
+    v(:,k+1) = vk + dt*dv;  % update velocity first
+    y(:,k+1) = yk + dt*v(:,k+1);  % then integrate position with new v
+end
+ 
+% Plots for velocities
+% Each row of v(i,:) stores the velocity history of jet i across all time
+% steps.
+figure; hold on;
+plot(t_vals, v(1,:), 'LineWidth', 1.2);  % Jet 1
+plot(t_vals, v(2,:), 'LineWidth', 1.2);  % Jet 2
+plot(t_vals, v(3,:), 'LineWidth', 1.8);  % Jet 3   highlight v3
+plot(t_vals, v(4,:), 'LineWidth', 1.2);  % Jet 4
+plot(t_vals, v(5,:), 'LineWidth', 1.2);  % Jet 5
+grid on; 
+xlabel('t (s)'); 
+ylabel('v_i(t)');
+title('Part 4: Velocities of All Jets Over Time');
+legend({'v_1', 'v_2', 'v_3', 'v_4', 'v_5'}, 'Location', 'best');
+
+% Plot the four required position differences (neighbor spacings)
+% These represent the distances between adjacent jets over time
+% Each curve shows how fast the jets reach the desired steady-state spacing
+% d = 10
+
+% Compute position differences at every time step
+y21 = y(2,:) - y(1,:);  % Spacing between Jet 2 and Jet 1
+y32 = y(3,:) - y(2,:);  % Spacing between Jet 3 and Jet 2
+y34 = y(3,:) - y(4,:);  % Spacing between Jet 3 and Jet 4
+y45 = y(4,:) - y(5,:);  % Spacing between Jet 4 and Jet 5
+
+figure;
+hold on;
+% Plot each spacing vs time
+plot(t_vals, y21, 'LineWidth', 1.6);
+plot(t_vals, y32, 'LineWidth', 1.6);
+plot(t_vals, y34, 'LineWidth', 1.6);
+plot(t_vals, y45, 'LineWidth', 1.6);
+yline(d, 'kREPLACE_WITH_DASH_DASH', 'LineWidth', 1.2);  % Reference Line for the desired spacing to converge to
+grid on;
+xlabel('t (s)');
+ylabel('y-differences (m)');
+title('Part 4: Position Differences of Jets Over Time');
+legend({'y_2 - y_1','y_3 - y_2','y_3 - y_4','y_4 - y_5'}, 'Location', 'best');
+##### SOURCE END #####
+-->
+</body>
+</html>
